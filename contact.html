@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GrowSphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Primary Color Variables - Change these to update the entire theme */
+            --primary-color: #8A2BE2;
+            --primary-dark: #0083b0;
+            --gradient: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+
+            /* Background Variables */
+            --bg-dark: #0f2027;
+            --bg-medium: #203a43;
+            --bg-light: #2c5364;
+            --bg-gradient: linear-gradient(135deg, var(--bg-dark), var(--bg-medium), var(--bg-light));
+
+            /* Text Colors */
+            --text-light: #ffffff;
+            --text-muted: #e0e0e0;
+            --text-dark: #333333;
+
+            /* UI Elements */
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --header-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 15px 0;
+            background: var(--header-bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-dot {
+            color: var(--primary-color);
+            font-size: 40px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .nav-cta {
+            margin-left: 40px;
+        }
+
+        .nav-cta-button {
+            padding: 10px 25px;
+            background: var(--gradient);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+        }
+
+        .nav-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 180, 219, 0.5);
+        }
+
+        /* Mobile Navigation */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            flex: 1;
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .contact-animation {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            border: 1px solid var(--card-border);
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Fix select dropdown text visibility */
+        .form-group select option {
+            background: #1e2a38;
+            /* dropdown background (dark) */
+            color: #ffffff;
+            /* visible white text */
+        }
+
+        /* Optional: change hover color */
+        .form-group select option:hover {
+            background: #3b4a5a;
+            color: #fff;
+        }
+
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient);
+            color: var(--text-light);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 180, 219, 0.5);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+        }
+
+        .info-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Animation Elements */
+        .animation-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 180, 219, 0.2);
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 15%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            transform-origin: left;
+            animation: lineGrow 6s infinite ease-in-out;
+        }
+
+        .line-1 {
+            top: 30%;
+            left: 20%;
+            width: 60%;
+            animation-delay: 0s;
+        }
+
+        .line-2 {
+            top: 60%;
+            left: 10%;
+            width: 40%;
+            animation-delay: 2s;
+        }
+
+        .line-3 {
+            bottom: 25%;
+            right: 15%;
+            width: 50%;
+            animation-delay: 4s;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .icon-1 {
+            top: 20%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        .icon-2 {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 1.5s;
+        }
+
+        .icon-3 {
+            top: 50%;
+            right: 30%;
+            animation-delay: 3s;
+        }
+
+        .contact-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .contact-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes lineGrow {
+            0% {
+                transform: scaleX(0);
+            }
+
+            50% {
+                transform: scaleX(1);
+            }
+
+            100% {
+                transform: scaleX(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+
+            66% {
+                transform: translateY(10px) rotate(-5deg);
+            }
+        }
+
+        /* Footer Styles */
+        .footer-main {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 0 20px;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--card-border);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Logo Styles */
+        .contact-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container:before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(transparent, transparent, transparent, var(--primary-color));
+            animation: rotate 4s linear infinite;
+        }
+
+        .logo-container:after {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            background: var(--bg-gradient);
+            border-radius: 50%;
+        }
+
+        .logo-icon {
+            position: relative;
+            z-index: 1;
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Contact Info Layout */
+        .contact-info-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-animation {
+                min-height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                width: 100%;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .nav-cta {
+                margin: 20px 0 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .contact-info-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+
+            .contact-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .circle-1 {
+                width: 150px;
+                height: 150px;
+            }
+
+            .circle-2 {
+                width: 120px;
+                height: 120px;
+            }
+
+            .circle-3 {
+                width: 80px;
+                height: 80px;
+            }
+
+            .floating-icon {
+                font-size: 1.5rem;
+            }
+
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .logo-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* toast-notification Style */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+
+        .toast {
+            margin-bottom: 10px;
+            padding: 12px 18px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 500;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s, fadeOut 0.5s 3s;
+        }
+
+        .toast.success {
+            background: #28a745;
+        }
+
+        .toast.error {
+            background: #dc3545;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-text"><a href="/index.html"
+                        style="text-decoration: none; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GrowSphere</a>
+                </span>
+                <span class="logo-dot">.</span>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#offer">Offer</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#" class="active">Contact Us</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="/auth.html" class="nav-cta-button">login</a>
+                </div>
+
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="contact-container">
+                <!-- Animation Side -->
+                <div class="contact-animation ">
+                    <div class="animation-circle circle-1"></div>
+                    <div class="animation-circle circle-2"></div>
+                    <div class="animation-circle circle-3"></div>
+
+                    <div class="connection-line line-1"></div>
+                    <div class="connection-line line-2"></div>
+                    <div class="connection-line line-3"></div>
+
+                    <div class="floating-icon icon-1">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="floating-icon icon-2">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="floating-icon icon-3">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+
+                    <div class="contact-text">
+                        <h2>Let's Start a Conversation</h2>
+                        <p>We're here to answer your questions and discuss how we can help your business grow. Reach out
+                            to us and we'll respond as soon as we can.</p>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userType">User Type:</label>
+                            <select id="userType" name="userType" required>
+                                <option value="">Select User Type</option>
+                                <option value="individual">Individual</option>
+                                <option value="business">Business</option>
+                                <option value="agency">Agency</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category:</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="digital-marketing">Digital Marketing</option>
+                                <option value="web-design">Web Design</option>
+                                <option value="ui-ux">UI/UX Design</option>
+                                <option value="development">Development</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message:</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="contact-info" style="display: flex;  justify-content:space-around; gap: 40px;">
+                <div class="info-item" style="display: flex; align-items: flex-start;">
+                    <div
+                        style="margin-right: 15px; background: linear-gradient(to right, #8A2BE2, #0083b0); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-envelope" style="color: white; font-size: 20px;"></i>
+                    </div>
+                    <div>
+                        <h3>Support Email</h3>
+                        <p>info@suningyu.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item" style="display: flex; align-items: flex-start;">
+                    <div
+                        style="margin-right: 15px; background: linear-gradient(to right, #8A2BE2, #0083b0); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-map-marker-alt" style="color: white; font-size: 20px;"></i>
+                    </div>
+                    <div>
+                        <h3>Office Address</h3>
+                        <p>Remote port link U<br>
+                            Ex. Time V4 to Mobile Estate,<br>
+                            Candy Channel - 80000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-main">
+        <div class="footer-container">
+            <!-- Stay Updated Column -->
+            <div class="footer-col">
+                <h3>Stay Updated</h3>
+                <p>Enter your email to subscribe to our newsletter for updates and offers.</p>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button>Subscribe</button>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Services Column -->
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Mobile Apps</a></li>
+                    <li><a href="#">E-commerce</a></li>
+                    <li><a href="#">SEO Marketing</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                    <li><a href="#">Analytics</a></li>
+                </ul>
+            </div>
+
+            <!-- Company Column -->
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Support Column -->
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom container">
+            <p>© 2024 GrowSphere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Animation for form elements
+        const formElements = document.querySelectorAll('.form-group');
+        formElements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    </script>
+
+    <!-- Supabase client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const { createClient } = supabase;
+        const supabaseUrl = "https://txxaojmiuzqhsqupgmwp.supabase.co";   // replace with your Supabase project URL
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4eGFvam1pdXpxaHNxdXBnbXdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4NzU0NjksImV4cCI6MjA3MjQ1MTQ2OX0.sWUkz6U5Ix-11VoZjVpFMPUmz7yRh5_ubyx8u8p-E8Q";   // replace with your anon/public API key
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+    </script>
+
+    <!-- Toast + form submission -->
+    <script>
+        // ✅ Toast function
+        function showToast(message, type = "success") {
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3500);
+        }
+
+        const form = document.getElementById("contactForm");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const user_type = document.getElementById("userType").value;
+            const category = document.getElementById("category").value;
+            const message = document.getElementById("message").value.trim();
+
+            // ✅ Regex patterns
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[0-9]{10}$/;
+
+            // ✅ Extra JS validation with custom toasts
+            if (!name) {
+                showToast("⚠️ Name is required.", "error");
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                showToast("⚠️ Please enter a valid email.", "error");
+                return;
+            }
+            if (!phoneRegex.test(phone)) {
+                showToast("⚠️ Please enter a valid 10-digit phone number.", "error");
+                return;
+            }
+            if (!user_type) {
+                showToast("⚠️ Please select a user type.", "error");
+                return;
+            }
+            if (!category) {
+                showToast("⚠️ Please select a category.", "error");
+                return;
+            }
+            if (!message) {
+                showToast("⚠️ Message cannot be empty.", "error");
+                return;
+            }
+
+            // ✅ Send to Supabase
+            const { data, error } = await supabaseClient
+                .from("contacts")
+                .insert([{ name, email, phone, user_type, category, message }]);
+
+            if (error) {
+                console.error("Error:", error.message);
+                showToast("❌ Something went wrong: " + error.message, "error");
+            } else {
+                showToast("✅ Form submitted successfully!", "success");
+                form.reset();
+
+                // Show second toast 1s after first disappears
+                setTimeout(() => {
+                    showToast("📩 We will contact you soon!", "success");
+                }, 4000);
+            }
+        });
+
+    </script>
+
+    <!-- Toast container --> <div id="toast-container"></div>
+
+
+</body>
+
+</html>
