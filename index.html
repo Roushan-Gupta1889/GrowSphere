@@ -141,18 +141,19 @@
         }
 
         .nav-cta {
-            margin-left: 40px;
+            margin: 10px;
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
         .nav-cta-button {
-            padding: 10px 25px;
+            
+            
             background: var(--gradient);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 10px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
@@ -855,13 +856,15 @@
             }
 
             .nav-cta {
-                margin: 20px 0 0;
+                
+                margin: 5px 0 0;
                 text-align: center;
                 flex-direction: column;
                 gap: 10px;
             }
 
             .hamburger {
+                margin-left:5px ;
                 display: block;
             }
 
@@ -897,6 +900,17 @@
                 left: 10px;
                 right: auto;
             }
+
+            .nav-links li:last-child {
+    margin-top: 15px;
+}
+
+.nav-links .nav-cta-button {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
         }
 
         @media (max-width: 768px) {
@@ -995,49 +1009,42 @@
 </head>
 
 <body>
-    <!-- Header with Logo and Navigation -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <span class="logo-text">GrowSphere</span>
+   <!-- Header with Logo and Navigation -->
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <span class="logo-text">GrowSphere</span>
+        </div>
+
+        <nav>
+            <!-- Nav links -->
+            <ul class="nav-links">
+                <li><a href="#redirect" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#offer">Offer</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="/contact.html">Contact Us</a></li>
+                <!-- Login button inside nav-links (appears below hamburger in mobile) -->
+                <li>
+                    <a href="/auth.html" class="nav-cta-button" id="login-btn">Login</a>
+                </li>
+            </ul>
+
+            <!-- Theme toggle button stays separate -->
+            <div class="nav-cta">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
 
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#redirect" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#offer">Offer</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="/contact.html">Contact Us</a></li>
-                </ul>
+            <!-- Hamburger -->
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+</header>
 
-                <div class="nav-cta">
-                    <!-- Theme Toggle Button -->
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
-
-                    <!-- Login button (shown when logged out) -->
-                    <a href="/auth.html" class="nav-cta-button" id="login-btn">Login</a>
-
-                    <!-- User menu (shown when logged in) -->
-                    <div id="user-menu" style="display:none; position:relative; cursor:pointer;">
-                        <i class="fas fa-user-circle" style="font-size: 1.8rem;"></i>
-                        <span id="user-name" style="margin-left:8px; font-weight:600;"></span>
-                        <div id="logout-dropdown"
-                            style="display:none; position:absolute; top:35px; right:0; background:var(--card-bg); color:var(--text-primary); border:1px solid var(--card-border); border-radius:6px; min-width:120px; text-align:center; padding:8px;">
-                            <a href="#" id="logout-btn"
-                                style="display:block; padding:8px; text-decoration:none; color:var(--text-primary);">Logout</a>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-        </div>
-    </header>
 
     <!-- Rest of the HTML content remains the same -->
     <!-- Hero Section -->
