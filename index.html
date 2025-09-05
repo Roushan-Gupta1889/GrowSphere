@@ -57,13 +57,13 @@
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin : 0 auto;
             padding: 0 20px;
         }
 
         /* Header & Navigation */
         header {
-            padding: 15px 0;
+            padding: 1px 0;
             background: var(--header-bg);
             position: sticky;
             top: 0;
@@ -194,30 +194,70 @@
             color: var(--text-secondary);
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--card-border);
-            transition: background-color 0.3s ease;
-        }
+        /* Hero Section with Video */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* allow top + bottom alignment */
+    text-align: center;
+    overflow: hidden;
+    color: white;
+}
+/* Background Video */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+/* Overlay for better readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1); /* dark overlay */
+    z-index: -1;
+}
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* pushes top & bottom apart */
+    width: 100%;
+    z-index: 1;
+    padding: 50px 20px;
+}
+/* Top content (heading + subtext) */
+.hero-top {
+    text-align: center;
+}
+
+/* Bottom content (buttons) */
+.hero-bottom {
+    text-align: center;
+    margin-bottom: 50px; /* adjust space from bottom */
+}
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: var(--text-secondary);
-        }
+.hero p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: #f1f1f1; /* force light color over video */
+}
 
         /* Hero Buttons */
         .hero-buttons {
@@ -1003,8 +1043,9 @@
                     opacity: 1;
                     transform: translateY(0);
                 }
-            }
+            }   
         }
+        
     </style>
 </head>
 
@@ -1047,11 +1088,25 @@
 
 
     <!-- Rest of the HTML content remains the same -->
-    <!-- Hero Section -->
-    <section class="hero" id="redirect">
-        <div class="container">
-            <h1>Transform Your Digital Presence With Us</h1>
-           <p><span id="typed-subtext"></span></p>
+   <!-- Hero Section -->
+<section class="hero" id="redirect">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="/videos/Arial Narrow Bold.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Hero Content -->
+    <div class="container hero-content">
+        <div class="hero-top">
+            
+            <p><span id="typed-subtext"></span></p>
+        </div>
+
+        <div class="hero-bottom">
             <div class="hero-buttons">
                 <a href="#work" class="btn-outline">
                     <i class="fas fa-play-circle"></i> View Our Work
@@ -1061,7 +1116,10 @@
                 </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
 
     <!-- Stats Section -->
     <section class="stats">
@@ -1074,10 +1132,7 @@
                 <div class="stat-number">2,500+</div>
                 <div class="stat-text">Live Webinars</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">80+</div>
-                <div class="stat-text">International Speakers</div>
-            </div>
+           
             <div class="stat-item">
                 <div class="stat-number">750+</div>
                 <div class="stat-text">Physical Trainings</div>
@@ -1184,9 +1239,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-year">LinkedIn</div>
-                        <p class="timeline-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolorum
-                            dolorem natus, vel nesciunt earum quas excepturi itaque iste debitis iusto nam quia ducimus
-                            alias unde aut amet harum cum?</p>
+                        <p class="timeline-desc">We optimize LinkedIn profiles to boost personal branding, credibility, and visibility for professionals and founders. Our strategy includes compelling copy, keyword integration, and content planning to attract the right audience and drive engagement.</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
                         alt="LinkedIn" class="timeline-img">
@@ -1194,9 +1247,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-year">YouTube/Instagram</div>
-                        <p class="timeline-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi nihil
-                            vero nulla quo cupiditate? Velit mollitia aperiam soluta, saepe quia nihil iusto reiciendis
-                            aliquam optio repellat facilis quis eaque in!</p>
+                        <p class="timeline-desc">We craft SEO-optimized, engaging content tailored to your brand’s voice that attracts and converts your target audience. From blog posts to social media copy, our content drives traffic and builds lasting connections.</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
                         alt="YouTube/Instagram" class="timeline-img">
@@ -1204,9 +1255,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-year">Design</div>
-                        <p class="timeline-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore quo
-                            fuga adipisci? Assumenda natus, magnam dolore quo officia in atque voluptate soluta dolor a.
-                            Autem nam totam delectus ipsum? Expedita?</p>
+                        <p class="timeline-desc">We create professional, visually impactful designs including pitch decks, brochures, posters, and brand assets that elevate your brand identity. Our design solutions are tailored to engage your audience and support your marketing goals.</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
                         alt="Design" class="timeline-img">
@@ -1214,9 +1263,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-year">Landing Page</div>
-                        <p class="timeline-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-                            nulla consequatur autem necessitatibus quo praesentium. Animi, hic et, delectus quas
-                            obcaecati ad excepturi sit blanditiis autem, vel est? Fugiat, hic.</p>
+                        <p class="timeline-desc">We design high-converting landing pages optimized for user experience and SEO to maximize leads and sales. Our custom-built pages are crafted to engage visitors and drive measurable growth for your business.</p>
                     </div>
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
                         alt="Landing Page" class="timeline-img">
@@ -1279,12 +1326,12 @@
             <div class="footer-col">
                 <h3>Company</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#about">About Us</a></li>
                     <li><a href="#">Our Team</a></li>
                     <li><a href="#">Careers</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </div>
 
@@ -1554,21 +1601,6 @@
     </script>
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script>
-        function initializeTypingEffect() {
-            new Typed('#typed-subtext', {
-                strings: [
-                    'Learn how to scale your brand with smart digital strategies',
-                    'Empowering businesses with data-driven growth',
-                    'Connect. Grow. Thrive with GrowSphere'
-                ],
-                typeSpeed: 50,
-                backSpeed: 25,
-                backDelay: 2000,
-                loop: true
-            });
-        }
-        initializeTypingEffect();
-    </script>
+    
 </body>
 </html>
