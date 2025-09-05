@@ -9,26 +9,36 @@
 
     <style>
         :root {
-            /* Primary Color Variables - Change these to update the entire theme */
+            /* Light Mode Variables (Default) */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --card-bg: #ffffff;
+            --card-border: #dee2e6;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            
+            /* Primary Color Variables */
             --primary-color: #8A2BE2;
             --primary-dark: #0083b0;
             --gradient: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+        }
 
-            /* Background Variables */
-            --bg-dark: #0f2027;
-            --bg-medium: #203a43;
-            --bg-light: #2c5364;
-            --bg-gradient: linear-gradient(135deg, var(--bg-dark), var(--bg-medium), var(--bg-light));
-
-            /* Text Colors */
-            --text-light: #ffffff;
-            --text-muted: #e0e0e0;
-            --text-dark: #333333;
-
-            /* UI Elements */
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-primary: #0f2027;
+            --bg-secondary: #203a43;
+            --bg-tertiary: #2c5364;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-muted: #adb5bd;
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --header-bg: rgba(0, 0, 0, 0.8);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -39,9 +49,10 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            color: var(--text-light);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -57,7 +68,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s ease;
         }
 
         .header-content {
@@ -88,6 +100,7 @@
         /* Navigation */
         nav {
             display: flex;
+            align-items: center;
         }
 
         .nav-links {
@@ -101,7 +114,7 @@
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
@@ -129,22 +142,45 @@
 
         .nav-cta {
             margin-left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .nav-cta-button {
             padding: 10px 25px;
             background: var(--gradient);
-            color: var(--text-light);
+            color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
         }
 
         .nav-cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 180, 219, 0.5);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-color);
+            background: rgba(138, 43, 226, 0.1);
         }
 
         /* Mobile Navigation */
@@ -154,15 +190,16 @@
             background: none;
             border: none;
             font-size: 1.8rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
         /* Hero Section */
         .hero {
             padding: 100px 0;
             text-align: center;
-            background: rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--card-border);
+            transition: background-color 0.3s ease;
         }
 
         .hero h1 {
@@ -178,17 +215,15 @@
             font-size: 1.5rem;
             max-width: 800px;
             margin: 0 auto 30px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
-        /* hero button  */
         /* Hero Buttons */
         .hero-buttons {
             display: flex;
             gap: 15px;
             margin-top: 20px;
             justify-content: center;
-            /* center under hero text */
         }
 
         .hero-buttons a {
@@ -212,14 +247,14 @@
 
         .btn-outline:hover {
             background: var(--gradient);
-            color: var(--text-light);
+            color: white;
             border-color: transparent;
         }
 
         /* Solid Button */
         .btn-solid {
             background: var(--gradient);
-            color: var(--text-light);
+            color: white;
             border: 2px solid transparent;
         }
 
@@ -227,29 +262,29 @@
             background: var(--primary-dark);
         }
 
-
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
             background: var(--gradient);
-            color: var(--text-light);
+            color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 180, 219, 0.5);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
         }
 
         /* Stats Section */
         .stats {
             padding: 80px 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--bg-tertiary);
+            transition: background-color 0.3s ease;
         }
 
         .stats-container {
@@ -263,13 +298,14 @@
             padding: 30px 20px;
             background: var(--card-bg);
             border-radius: 15px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
             border: 1px solid var(--card-border);
+            box-shadow: var(--shadow);
         }
 
         .stat-item:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(138, 43, 226, 0.05);
         }
 
         .stat-number {
@@ -283,13 +319,14 @@
 
         .stat-text {
             font-size: 1.1rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
         /* Key Offering Section */
         .key-offering {
             padding: 80px 0;
-            background: rgba(0, 0, 0, 0.2);
+            background: var(--bg-secondary);
+            transition: background-color 0.3s ease;
         }
 
         .key-offering .container {
@@ -300,7 +337,7 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto 50px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
@@ -316,7 +353,7 @@
             height: 300px;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease;
         }
 
@@ -365,13 +402,14 @@
             text-align: center;
             font-size: 1rem;
             line-height: 1.6;
-            color: var(--text-light);
+            color: white;
         }
 
         /* Key Details Section */
         .key-details {
             padding: 80px 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: var(--bg-tertiary);
+            transition: background-color 0.3s ease;
         }
 
         .key-details .container {
@@ -414,17 +452,17 @@
             background: var(--card-bg);
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             border: 1px solid var(--card-border);
             width: 100%;
             max-width: 500px;
             position: relative;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .timeline-content:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(138, 43, 226, 0.05);
         }
 
         .timeline-year {
@@ -433,10 +471,11 @@
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary-color);
-            background: rgba(15, 32, 39, 0.9);
+            background: var(--bg-primary);
             padding: 5px 15px;
             border-radius: 20px;
             border: 2px solid var(--primary-color);
+            transition: background-color 0.3s ease;
         }
 
         .timeline-item:nth-child(odd) .timeline-year {
@@ -450,7 +489,7 @@
         .timeline-desc {
             font-size: 1.1rem;
             line-height: 1.6;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             margin-top: 10px;
         }
 
@@ -461,9 +500,10 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 180, 219, 0.5);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
             transition: transform 0.3s ease;
         }
+        
 
         .timeline-item:nth-child(odd) .timeline-img {
             right: -180px;
@@ -543,6 +583,8 @@
         /* Events Section */
         .events {
             padding: 80px 0;
+            background: var(--bg-secondary);
+            transition: background-color 0.3s ease;
         }
 
         .section-title {
@@ -555,32 +597,22 @@
         .event-cards {
             display: flex;
             justify-content: center;
-            /* Center all cards */
             gap: 30px;
-            /* Equal spacing between them */
             flex-wrap: wrap;
-            /* Stack on small screens */
         }
 
         .event-card {
             flex: 1 1 300px;
-            /* Make cards flexible */
             max-width: 350px;
-            /* Prevent them from being too wide */
             text-align: center;
         }
 
         .event-card video {
             width: 100%;
-            /* Take full width of card */
             height: auto;
-            /* Keep aspect ratio */
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
         }
-
-
-
 
         .city {
             font-size: 1.8rem;
@@ -591,7 +623,7 @@
         .venue {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
         .date {
@@ -603,14 +635,14 @@
         .price {
             font-size: 1.5rem;
             margin: 20px 0;
-            color: var(--text-light);
+            color: var(--text-primary);
         }
 
         .book-button {
             display: inline-block;
             padding: 12px 30px;
             background: var(--gradient);
-            color: var(--text-light);
+            color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
@@ -624,9 +656,10 @@
 
         /* Updated Footer Styles */
         .footer-main {
-            background: rgba(0, 0, 0, 0.9);
+            background: var(--bg-tertiary);
             padding: 70px 0 30px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            transition: background-color 0.3s ease;
         }
 
         .footer-container {
@@ -659,7 +692,7 @@
         .footer-col p {
             margin-bottom: 20px;
             line-height: 1.6;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
         .footer-col ul {
@@ -671,7 +704,7 @@
         }
 
         .footer-col ul li a {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
@@ -694,19 +727,20 @@
             padding: 12px 15px;
             border: none;
             border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
             outline: none;
+            border: 1px solid var(--card-border);
         }
 
         .subscribe-form input::placeholder {
-            color: #ccc;
+            color: var(--text-muted);
         }
 
         .subscribe-form button {
             padding: 12px 15px;
             background: var(--primary-color);
-            color: var(--text-light);
+            color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -731,15 +765,17 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
             border-radius: 50%;
-            color: var(--text-light);
+            color: var(--text-primary);
             transition: all 0.3s ease;
             text-decoration: none;
+            border: 1px solid var(--card-border);
         }
 
         .social-icons a:hover {
             background: var(--primary-color);
+            color: white;
             transform: translateY(-3px);
         }
 
@@ -747,9 +783,51 @@
             text-align: center;
             padding-top: 40px;
             margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ccc;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
             font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: var(--bg-tertiary);
+            transition: background-color 0.3s ease;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1 1 500px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-image {
+            flex: 1 1 400px;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
         }
 
         /* Responsive Design */
@@ -760,10 +838,11 @@
                 position: absolute;
                 top: 100%;
                 right: 0;
-                background: rgba(0, 0, 0, 0.95);
+                background: var(--bg-secondary);
                 width: 100%;
                 padding: 20px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                box-shadow: var(--shadow);
+                transition: background-color 0.3s ease;
             }
 
             .nav-links.active {
@@ -778,6 +857,8 @@
             .nav-cta {
                 margin: 20px 0 0;
                 text-align: center;
+                flex-direction: column;
+                gap: 10px;
             }
 
             .hamburger {
@@ -868,9 +949,6 @@
                 justify-content: center;
             }
 
-
-
-
             /* Timeline Images */
             .timeline-img {
                 width: 300px;
@@ -913,46 +991,6 @@
                 }
             }
         }
-
-                    .about {
-  padding: 80px 0;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.about-container {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  flex-wrap: wrap;
-}
-
-.about-text {
-  flex: 1 1 500px;
-}
-
-.about-text p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text-muted);
-}
-
-.about-image {
-  flex: 1 1 400px;
-  text-align: center;
-}
-
-.about-image img {
-  width: 100%;
-  max-width: 450px;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
-}
-
-.about-image img:hover {
-  transform: scale(1.05);
-}
     </style>
 </head>
 
@@ -961,9 +999,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-
                 <span class="logo-text">GrowSphere</span>
-
             </div>
 
             <nav>
@@ -976,6 +1012,11 @@
                 </ul>
 
                 <div class="nav-cta">
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+
                     <!-- Login button (shown when logged out) -->
                     <a href="/auth.html" class="nav-cta-button" id="login-btn">Login</a>
 
@@ -984,14 +1025,12 @@
                         <i class="fas fa-user-circle" style="font-size: 1.8rem;"></i>
                         <span id="user-name" style="margin-left:8px; font-weight:600;"></span>
                         <div id="logout-dropdown"
-                            style="display:none; position:absolute; top:35px; right:0; background:#fff; color:#333; border:1px solid #ccc; border-radius:6px; min-width:120px; text-align:center; padding:8px;">
+                            style="display:none; position:absolute; top:35px; right:0; background:var(--card-bg); color:var(--text-primary); border:1px solid var(--card-border); border-radius:6px; min-width:120px; text-align:center; padding:8px;">
                             <a href="#" id="logout-btn"
-                                style="display:block; padding:8px; text-decoration:none; color:#333;">Logout</a>
+                                style="display:block; padding:8px; text-decoration:none; color:var(--text-primary);">Logout</a>
                         </div>
                     </div>
                 </div>
-
-
 
                 <button class="hamburger">
                     <i class="fas fa-bars"></i>
@@ -1000,6 +1039,7 @@
         </div>
     </header>
 
+    <!-- Rest of the HTML content remains the same -->
     <!-- Hero Section -->
     <section class="hero" id="redirect">
         <div class="container">
@@ -1016,18 +1056,10 @@
         </div>
     </section>
 
-
-
-
-
-
-
     <!-- Stats Section -->
     <section class="stats">
         <div class="container stats-container">
-            <div class="stat-item"><!-- Hero Section -->
-
-
+            <div class="stat-item">
                 <div class="stat-number">2,000,000+</div>
                 <div class="stat-text">Lives Transformed</div>
             </div>
@@ -1050,8 +1082,6 @@
         </div>
     </section>
 
-
-    
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container about-container">
@@ -1139,7 +1169,6 @@
         </div>
     </section>
 
-
     <!-- Key Details Section -->
     <section class="key-details" id="work">
         <div class="container">
@@ -1204,7 +1233,6 @@
                     <video src="/videos/svmweb.mp4" controls></video>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -1273,6 +1301,41 @@
     </footer>
 
     <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or respect OS preference
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        // Set initial theme
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
         // Mobile navigation toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1316,8 +1379,6 @@
                 }
             }, stepTime);
         }
-
-
 
         setTimeout(() => {
             cards.forEach((card, index) => {
@@ -1410,8 +1471,6 @@
             return re.test(email);
         }
 
-        // Previous JavaScript remains the same
-
         // Timeline animation
         const timelineItems = document.querySelectorAll('.timeline-content');
         const timelineImages = document.querySelectorAll('.timeline-img');
@@ -1443,15 +1502,12 @@
                 }, 500 * index);
             });
         }, 1000);
-        
     </script>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const SUPABASE_URL = "https://txxaojmiuzqhsqupgmwp.supabase.co"; // same as auth.html
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4eGFvam1pdXpxaHNxdXBnbXdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4NzU0NjksImV4cCI6MjA3MjQ1MTQ2OX0.sWUkz6U5Ix-11VoZjVpFMPUmz7yRh5_ubyx8u8p-E8Q"; // your anon key
+        const SUPABASE_URL = "https://txxaojmiuzqhsqupgmwp.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4eGFvam1pdXpxaHNxdXBnbXdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4NzU0NjksImV4cCI6MjA3MjQ1MTQ2OX0.sWUkz6U5Ix-11VoZjVpFMPUmz7yRh5_ubyx8u8p-E8Q";
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const loginBtn = document.getElementById("login-btn");
@@ -1488,30 +1544,24 @@
         });
 
         checkAuth();
-        
     </script>
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-<script>
-  function initializeTypingEffect() {
-      new Typed('#typed-subtext', {
-          strings: [
-             
-              'Learn how to scale your brand with smart digital strategies',
-              'Empowering businesses with data-driven growth',
-              'Connect. Grow. Thrive with GrowSphere'
-          ],
-          typeSpeed: 50,
-          backSpeed: 25,
-          backDelay: 2000,
-          loop: true
-      });
-  }
-  initializeTypingEffect();
-</script>
-
-
-
+    <script>
+        function initializeTypingEffect() {
+            new Typed('#typed-subtext', {
+                strings: [
+                    'Learn how to scale your brand with smart digital strategies',
+                    'Empowering businesses with data-driven growth',
+                    'Connect. Grow. Thrive with GrowSphere'
+                ],
+                typeSpeed: 50,
+                backSpeed: 25,
+                backDelay: 2000,
+                loop: true
+            });
+        }
+        initializeTypingEffect();
+    </script>
 </body>
-
 </html>
